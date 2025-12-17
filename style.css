@@ -1,0 +1,323 @@
+/* =========================================
+   1. CORE THEME & BACKGROUND (Ocean Style)
+   ========================================= */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, select, textarea, label, .novel-content, [contenteditable] {
+    font-family: 'Sarabun', 'Inter', sans-serif !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, li, .novel-content {
+    background-color: transparent !important;
+}
+
+/* =========================================
+   2. COMPONENTS (Cards, Buttons, Novel Content)
+   ========================================= */
+
+/* --- ส่วนเนื้อหานิยาย (Novel Content) --- */
+.novel-content,
+[contenteditable="true"] {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.8;
+    color: #334155;
+    text-indent: 40px; 
+    text-align: justify; 
+    background-color: transparent !important;
+    min-height: 200px;
+    display: block;
+}
+
+/* แก้ไขให้รองรับการจัดกลาง (Center) - ไม่ต้องย่อหน้า */
+.novel-content div[style*="text-align: center"],
+.novel-content p[style*="text-align: center"],
+[contenteditable="true"] div[style*="text-align: center"],
+[contenteditable="true"] p[style*="text-align: center"] {
+    text-indent: 0 !important;
+}
+
+/* --- ตกแต่งเส้นคั่นหน้า (HR) --- */
+.novel-content hr,
+[contenteditable="true"] hr {
+    border: 0;
+    border-top: 2px solid #cbd5e1; /* สีเทาอ่อน */
+    margin: 2.5em auto; /* เว้นระยะห่างและจัดกึ่งกลาง */
+    width: 30%; /* ความยาวเส้น 30% ของหน้า */
+    display: block;
+    text-indent: 0;
+    opacity: 0.6;
+}
+
+/* บังคับย่อหน้าและเว้นบรรทัด */
+.novel-content p, 
+.novel-content div,
+[contenteditable="true"] p,
+[contenteditable="true"] div {
+    margin-bottom: 1.5em; 
+    margin-top: 0;
+    text-indent: 40px; 
+    display: block;
+}
+
+.novel-content img,
+[contenteditable="true"] img {
+    display: block;
+    margin: 20px auto; 
+    max-width: 100%;
+    text-indent: 0; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+[contenteditable="true"]:empty:before {
+    content: attr(data-placeholder);
+    color: #94a3b8;
+    pointer-events: none;
+    display: block;
+    font-style: italic;
+    text-indent: 0;
+}
+
+/* --- TOOLBAR STYLES --- */
+.editor-toolbar {
+    border-bottom: 1px solid #cbd5e1;
+}
+.toolbar-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #475569;
+    font-size: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.toolbar-btn:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* การ์ดนิยาย */
+.novel-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(186, 230, 253, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(14, 165, 233, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+}
+.novel-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.15);
+    border-color: rgba(56, 189, 248, 0.5);
+    z-index: 10;
+}
+.novel-card img { transition: transform 0.6s ease; }
+.novel-card:hover img { transform: scale(1.1);
+}
+
+/* ปุ่มหลัก */
+.btn-primary {
+    background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+    color: white; border: none;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0891b2 100%);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+/* Page Visibility */
+.page { display: none; }
+.page.active { display: block;
+    animation: fadeIn 0.4s ease-out; }
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    #main-nav-desktop { display: none; }
+    #main-nav-mobile { display: flex; }
+    main { padding-bottom: 90px; }
+}
+
+/* Scroll To Top */
+#scrollTopBtn {
+    display: none; align-items: center; justify-content: center;
+    position: fixed; bottom: 25px;
+    right: 25px; z-index: 99;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    color: white; border: none; border-radius: 50%; width: 50px; height: 50px;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4); cursor: pointer;
+}
+
+/* Coffee/Donate Selection */
+.coffee-card.selected {
+    border-color: #f97316 !important;
+    background-color: #fff7ed !important;
+    transform: scale(1.05);
+}
+
+/* Stripe Element */
+#card-element {
+    padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; background-color: white;
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   3. NOTIFICATIONS & COMMENTS SYSTEM
+   ========================================= */
+
+/* --- Notification Styles --- */
+.notification-item {
+    transition: background-color 0.2s ease, transform 0.1s;
+    border-left: 4px solid transparent;
+}
+
+/* Unread State: พื้นหลังสีฟ้าอ่อน + เส้นขอบซ้ายสีฟ้า */
+.notification-item.unread {
+    background-color: #f0f9ff; /* Sky Blue 50 */
+    border-left-color: #0ea5e9; /* Sky Blue 500 */
+}
+
+.notification-item:hover {
+    background-color: #f8fafc;
+}
+
+/* ปุ่มลบแจ้งเตือน */
+.delete-notif-btn {
+    opacity: 0.5;
+    transition: all 0.2s;
+}
+.delete-notif-btn:hover {
+    opacity: 1;
+    color: #ef4444; /* Red 500 */
+    background-color: #fee2e2; /* Red 100 */
+    transform: scale(1.1);
+}
+
+/* Animation กระดิ่งสั่น */
+@keyframes bell-shake {
+    0% { transform: rotate(0); }
+    15% { transform: rotate(5deg); }
+    30% { transform: rotate(-5deg); }
+    45% { transform: rotate(4deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(2deg); }
+    85% { transform: rotate(-2deg); }
+    100% { transform: rotate(0); }
+}
+.bell-shake {
+    animation: bell-shake 0.8s ease-in-out;
+}
+
+/* --- Comment Styles --- */
+.comment-box {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s;
+}
+.comment-box:last-child {
+    border-bottom: none;
+}
+.comment-box:hover {
+    background-color: #f8fafc; /* Slate 50 */
+}
+
+/* กรอบเขียนคอมเมนต์ */
+#comment-input {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Admin Reply Badge */
+.admin-badge {
+    background-color: #0ea5e9;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-weight: bold;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* --- Like & Reply System (V2) --- */
+
+/* ปุ่ม Actions ใต้คอมเมนต์ */
+.comment-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #64748b; /* Slate 500 */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.action-btn:hover {
+    color: #0ea5e9; /* Sky 500 */
+}
+
+/* ปุ่ม Like เมื่อกดแล้ว (Active) */
+.action-btn.liked {
+    color: #ef4444; /* Red 500 */
+}
+.action-btn.liked i {
+    fill: #ef4444; /* เติมสีแดงในไอคอน */
+    transform: scale(1.1);
+}
+
+/* กล่องคอมเมนต์ย่อย (Reply) */
+.reply-container {
+    margin-left: 48px; /* ย่อหน้าเข้าไป */
+    margin-top: 10px;
+    padding-left: 15px;
+    border-left: 2px solid #e2e8f0;
+}
+
+/* กล่องพิมพ์ตอบกลับ (ซ่อนอยู่ตอนแรก) */
+.reply-input-box {
+    margin-top: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.reply-input-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.reply-input-box textarea:focus {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.1);
+}
+
+.btn-sm-primary {
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.btn-sm-primary:hover { background-color: #0284c7; }
